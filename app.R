@@ -37,7 +37,7 @@ collegedata$FIR
 ui <- 
 
 fluidPage(
-  titlePanel("college explorer"),
+  titlePanel("CollegeSearchTool"),
   fluidRow(
     column(3,
            wellPanel(
