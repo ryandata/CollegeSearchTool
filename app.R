@@ -5,7 +5,7 @@ library(plotly)
 library(ggrepel)
 
 collegedata <- read.csv("college_data.csv")
-# axis_vars <- c("ADM_RATE", "SATMT25", "SATMT75", "SATVR25", "SATVR75")
+
 axis_vars <- c(
   "Admissions Rate" = "ADM_RATE",
   "SAT Math 25%" = "SATMT25",
