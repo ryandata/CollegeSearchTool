@@ -22,7 +22,7 @@ axis_vars <- c(
   "Black Completion" = "C150_4_BLACK",
   "Hispanic Completion" = "C150_4_HISP",
   "White Completion" = "C150_4_WHITE",
-  "1st Gen Completion" = "FIRST_GEN_COMP_ORIG_YR6_RT",
+  "1st Gen Completion" = "FIRSTGEN_COMP_ORIG_YR6_RT",
   "Non-1stG Completion" = "NOT1STGEN_COMP_ORIG_YR6_RT",
   "Avg Family Income" = "FAMINC",
   "1st Gen Debt, median" = "FIRSTGEN_DEBT_MDN",
