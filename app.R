@@ -41,19 +41,6 @@ fluidPage(
   fluidRow(
     column(3,
            wellPanel(
-             h4("Filter"),
-             sliderInput("ADM_MIN", "Admit rate, min",
-                         0, 1, 0.5, step = .01),
-             sliderInput("ADM_MAX", "Admit rate, max",
-                         0, 1, 0.6, step = .01),
-             checkboxGroupInput("SchoolType", "School Type", choiceNames=c("Public","Private"), choiceValues=c("1","2"), selected="1"),
-             radioButtons("showNames", "Show Names", choices=c("Y","N"), selected="N"),
-             checkboxGroupInput(inputId = "RegionFinder",
-                                label = "Select Region(s):",
-                                choices = c("New England" = 1, "Mid Atlantic" = 2, "Great Lakes" = 3, "Plains" =4, "South" = 5, "Southwest" = 6, "Mountain West" = 7, "Pacific" =8),
-                                selected = 1)
-           ),
-           wellPanel(
              selectInput(inputId = "xvar",
                          label = "X-axis variable",
                          choices = axis_vars,
@@ -66,6 +53,22 @@ fluidPage(
                          label = "sorting variable",
                          choices = axis_vars,
                          selected = "ADM_RATE"),
+           wellPanel(
+             h4("Filter"),
+             sliderInput("ADM_MIN", "Admit rate, min",
+                         0, 1, 0.2, step = .01),
+             sliderInput("ADM_MAX", "Admit rate, max",
+                         0, 1, 0.5, step = .01),
+             sliderInput("FIRST_MIN", "First Gen, min",
+                         0, 1, 0.1, step = .01),
+             sliderInput("FIRST_MAX", "First Gen, max",
+                         0, 1, 0.5, step = .01),
+             checkboxGroupInput("SchoolType", "School Type", choiceNames=c("Public","Private"), choiceValues=c("1","2"), selected="1"),
+             checkboxGroupInput(inputId = "RegionFinder",
+                                label = "Select Region(s):",
+                                choices = c("New England" = 1, "Mid Atlantic" = 2, "Great Lakes" = 3, "Plains" =4, "South" = 5, "Southwest" = 6, "Mountain West" = 7, "Pacific" =8),
+                                selected = 1)
+           ),
              tags$small(paste0(
                "Note: This is a quick demo project developed by Ryan Womack, not an official or regularly updated data source on colleges."
              ))
@@ -92,6 +95,8 @@ server <- function(input, output, session) {
     input$SCHTYPE
     input$ADM_MIN
     input$ADM_MAX
+    input$FIRST_MIN
+    input$FIRST_MAX
     input$RegionFinder
     input$xvar
     input$yvar
@@ -100,6 +105,8 @@ server <- function(input, output, session) {
     collegedata %>%
       filter(ADM_RATE >= input$ADM_MIN) %>%
       filter(ADM_RATE <= input$ADM_MAX) %>%
+      filter(FIRST_GEN >= input$FIRST_MIN) %>%
+      filter(FIRST_GEN <= input$FIRST_MAX) %>%
       filter(SCHTYPE %in% input$SchoolType) %>%
       filter(REGION %in% input$RegionFinder) %>%
       arrange(get(input$sorter))  %>%
