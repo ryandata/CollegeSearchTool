@@ -1,9 +1,19 @@
+# CollegeSearchTool
+# Ryan Womack
+# ryanwomack.com
+# 2024-07-19
+# see https://github.com/ryandata/CollegeSearchTool for sources of data and description
+
 library(ggvis)
 library(dplyr)
 library(shiny)
 library(plotly)
 library(ggrepel)
 
+# set working directory to source file location
+# setwd("~/womack/documents/ryan/work/shiny/CollegeSearchTool")
+
+# read data (see college_data.R file for the filtering of the raw data)
 collegedata <- read.csv("college_data.csv")
 
 axis_vars <- c(
@@ -27,11 +37,9 @@ axis_vars <- c(
   "Avg Family Income" = "FAMINC",
   "1st Gen Debt, median" = "FIRSTGEN_DEBT_MDN",
   "Non-1stG Debt, median" = "NOTFIRSTGEN_DEBT_MDN",
-  "10yr Earnings, median" = "MD_EARN_WNE_P10",
-  "1st Gen 6yr death rate" = "FIRSTGEN_DEATH_YR6_RT",
-  "Overall 6yr death rate" = "DEATH_YR6_RT"
+  "10yr Earnings, median" = "MD_EARN_WNE_P10"
 )
-collegedata$FIR
+collegedata$FIRSTGEN_DEATH_YR2_RT
 # Define UI
 
 ui <- 
@@ -114,7 +122,7 @@ server <- function(input, output, session) {
              UGDS_BLACK, UGDS_HISP, UGDS_WHITE, FIRST_GEN, PCTPELL, C150_4_ASIAN,
              C150_4_BLACK, C150_4_HISP, C150_4_WHITE, FIRSTGEN_COMP_ORIG_YR6_RT, 
              NOT1STGEN_COMP_ORIG_YR6_RT, FAMINC, FIRSTGEN_DEBT_MDN, NOTFIRSTGEN_DEBT_MDN,
-             MD_EARN_WNE_P10, FIRSTGEN_DEATH_YR6_RT, DEATH_YR6_RT)
+             MD_EARN_WNE_P10)
   })
   
   output$plot1 <- renderPlotly({
@@ -122,8 +130,12 @@ server <- function(input, output, session) {
     fig <- plot_ly(
       d, x = ~get(input$xvar), y = ~get(input$yvar),
       text = ~INSTNM,
-      color = ~SCHTYPE
-    )
+      color = ~SCHTYPE,
+      type= 'scatter'
+    ) %>%
+      layout(xaxis = list(title = names(axis_vars[which(axis_vars == input$xvar)])),
+             yaxis = list(title = names(axis_vars[which(axis_vars == input$yvar)]))
+             )
     
     fig
     
