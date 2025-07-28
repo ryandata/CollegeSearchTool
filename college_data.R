@@ -8,14 +8,14 @@
 # setwd("~/womack/documents/ryan/work/shiny/CollegeSearchTool")
 
 # download data
-download.file("https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-Institution_06102024.zip", "college_data_raw.zip")
+download.file("https://ed-public-download.scorecard.network/downloads/Most-Recent-Cohorts-Institution_05192025.zip", "college_data_raw.zip")
 
 # unzip data
 unzip("college_data_raw.zip")
 
 # import data into R
 
-mydata<-read.csv("Most-Recent-Cohorts-Institution.csv")
+mydata<-read.csv("Most-Recent-Cohorts-Institution_05192025.csv")
 library(tidyverse)
 
 # filter for institutions granting bachelors or higher
