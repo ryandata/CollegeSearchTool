@@ -1,6 +1,6 @@
 # CollegeSearchTool
 
-[CollegeSearchTool demo](https://ryanwomack.shinyapps.io/CollegeSearchTool) at [https://ryanwomack.shinyapps.io/CollegeSearchTool](https://ryanwomack.shinyapps.io/CollegeSearchTool)
+[CollegeSearchTool demo](https://shiny.ryanwomack.com) at [https://ryanwomack.shinyapps.io/CollegeSearchTool](https://shiny.ryanwomack.com)
 
 A quick demo Shiny app with Plotly graphics to search college data from the 
 
@@ -12,7 +12,7 @@ A quick demo Shiny app with Plotly graphics to search college data from the
 
 [Data Dictionary](https://collegescorecard.ed.gov/assets/CollegeScorecardDataDictionary.xlsx)
 
-Data used is the most recent institution-level file (June 2024)
+Data used is the most recent institution-level file (May 2025)
 
 app.R is the Shiny app
 
